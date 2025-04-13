@@ -4,130 +4,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Biodata</title>
+    <title>Nandini's Profile</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #9b59b6;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-text: #777;
+            --bg-color: #f9f9f9;
+            --card-bg: #fff;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: #f0f2f5;
-            color: #1a1a1a;
+            background: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
 
         .container {
             max-width: 1000px;
-            margin: 2rem auto;
+            margin: 1rem auto;
             padding: 0 1rem;
         }
 
         .profile-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
             overflow: hidden;
+            position: relative;
         }
 
         .cover-photo {
             height: 200px;
             background-image: url('./E96B5760-E3EA-47F3-91DD-C5DDF2C7BFAA.JPG');
             background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center -374px;
+            background-position: center;
             position: relative;
+            border-bottom: 4px solid var(--primary-color);
         }
 
         .profile-header {
             position: relative;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 5px solid white;
+            border: 5px solid var(--card-bg);
             position: absolute;
-            bottom: -75px;
+            bottom: -60px;
             left: 50%;
             transform: translateX(-50%);
-            background: white;
             object-fit: cover;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-img:hover {
+            transform: translateX(-50%) scale(1.05);
         }
 
         .profile-content {
-            padding: 5rem 2rem 2rem;
+            padding: 5rem 1rem 1.5rem;
             text-align: center;
         }
 
         .profile-name {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-name::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
         }
 
         .profile-title {
-            color: #666;
-            font-size: 1.1rem;
+            color: var(--light-text);
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
+            font-style: italic;
         }
 
-        .stats {
-            margin: 2rem 0;
+        .profile-bio {
+            max-width: 700px;
+            margin: 1.5rem auto;
             padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 15px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #4158d0;
-        }
-
-        .stat-label {
-            color: #666;
+            background: rgba(142, 68, 173, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
             font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-color);
         }
 
         .tabs {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
+            gap: 0.5rem;
+            margin: 2rem 0 1.5rem;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1.2rem;
             border: none;
-            background: #f0f2f5;
-            color: #666;
-            border-radius: 25px;
+            background: #f0f0f0;
+            color: var(--light-text);
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .tab-btn.active {
-            background: #4158d0;
+            background: var(--primary-color);
             color: white;
+            box-shadow: 0 4px 8px rgba(142, 68, 173, 0.3);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: #e0e0e0;
         }
 
         .info-section {
             display: none;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
             margin-top: 1rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .info-section.active {
@@ -135,75 +180,185 @@
         }
 
         .info-section h3 {
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .info-Images {
-            /* Remove margin-left */
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            text-align: center;
             position: relative;
-            width: 200px;
-            border-radius: 0px 30px 0px 30px;
-            /* Match the size of other profile images */
-            height: 200px;
-            /* Add vertical margin */
-            cursor: pointer;
-            transition: filter 0.3s ease;
-            object-fit: cover;
+            padding-bottom: 8px;
         }
 
-        .info-Images:hover {
-            filter: brightness(0.9);
-        }
-
-        .family-info-intro {
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 0px 30px 0px 30px;
-            background: #eeeeee;
-            flex-direction: row-reverse;
-
-        }
-
-        /* Add specific styling for the family member image container */
-        .family-member-image {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            /* Align to the left */
+        .info-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--accent-color);
         }
 
         .info-item {
             display: flex;
             margin-bottom: 1rem;
-            align-items: center;
-            justify-content: space-between;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border-color);
+            flex-direction: column;
         }
 
         .info-label {
-            min-width: 120px;
             font-weight: 600;
-            color: #666;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
         }
 
+        .info-value {
+            color: var(--text-color);
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        /* Family Info Styles */
         .family-member {
-            padding: 1rem;
+            background: rgba(142, 68, 173, 0.03);
             border-radius: 10px;
-            margin-bottom: 1rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .family-member:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .family-member h4 {
-            color: #4158d0;
-            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        .family-member h4 i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .family-info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .family-info-details {
+            flex: 1;
+        }
+
+        .family-info-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .info-Images {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid var(--border-color);
+        }
+
+        .info-Images:hover {
+            transform: scale(1.03);
+            border-color: var(--primary-color);
+        }
+
+        /* Hobbies Section */
+        .hobbies-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .hobby-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .hobby-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .hobby-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .hobby-description {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            line-height: 1.5;
+        }
+
+        /* Gallery Styles */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 10px;
+            background: rgba(142, 68, 173, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        /* Social Links */
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .social-btn {
@@ -213,93 +368,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f0f2f5;
-            color: #4158d0;
+            background: var(--primary-color);
+            color: white;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .social-btn:hover {
             transform: translateY(-3px);
-            background: #4158d0;
-            color: white;
+            background: var(--secondary-color);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .edit-btn {
-            background: #4158d0;
-            color: white;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .family-person-name {
-            padding-right: 90px;
-        }
-
-        .edit-btn:hover {
-            background: #3447a6;
-        }
-
-        @media (max-width: 768px) {
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .family-info-intro {
-                flex-direction: column;
-                /* Stack items vertically */
-                text-align: center;
-                /* Center align text */
-                border-radius: 20px;
-                /* Smooth rounded corners */
-                padding: 1rem;
-                /* Adjust spacing */
-            }
-
-            .family-person-name {
-                padding-right: 0px;
-            }
-
-            .cover-photo {
-                height: 200px;
-                background-image: url('./E96B5760-E3EA-47F3-91DD-C5DDF2C7BFAA.JPG');
-                background-size: cover;
-                /* This makes the image cover the container while maintaining aspect ratio */
-                background-position: center;
-                /* This centers the image in case it's larger than the container */
-                background-repeat: no-repeat;
-                position: relative;
-            }
-
-            .info-label-value {
-                max-width: 100px;
-                display: flex;
-                flex-wrap: wrap;
-            }
-
-            .profile-img {
-                width: 120px;
-                height: 120px;
-                bottom: -60px;
-            }
-
-            .profile-content {
-                padding-top: 4rem;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-
-            }
-        }
-
+        /* Image Modal */
         .ig-modal {
             display: none;
             position: fixed;
@@ -322,9 +405,9 @@
 
         .ig-modal-content {
             position: relative;
-            max-width: 90vh;
-            max-height: 90vh;
-            border-radius: 3px;
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 5px;
             overflow: hidden;
             transform: scale(0.95);
             transition: transform 0.3s ease;
@@ -343,10 +426,10 @@
 
         .ig-modal-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             color: white;
-            font-size: 30px;
+            font-size: 25px;
             cursor: pointer;
             width: 40px;
             height: 40px;
@@ -354,50 +437,159 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.2);
             border: none;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            z-index: 1001;
         }
 
         .ig-modal-close:hover {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
         }
 
-        /* Make profile image clickable */
-        .profile-img {
-            cursor: pointer;
-            transition: filter 0.3s ease;
+        /* Responsive Design */
+        @media (min-width: 480px) {
+            .cover-photo {
+                height: 250px;
+            }
+
+            .profile-img {
+                width: 140px;
+                height: 140px;
+                bottom: -70px;
+            }
+
+            .profile-name {
+                font-size: 1.7rem;
+            }
+
+            .profile-title {
+                font-size: 1rem;
+            }
+
+            .tab-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hobbies-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-img {
+                height: 150px;
+            }
         }
 
-        .profile-img:hover {
-            filter: brightness(0.9);
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+                margin: 2rem auto;
+            }
+
+            .cover-photo {
+                height: 300px;
+            }
+
+            .profile-img {
+                width: 160px;
+                height: 160px;
+                bottom: -80px;
+            }
+
+            .profile-content {
+                padding: 6rem 2rem 2rem;
+            }
+
+            .profile-name {
+                font-size: 2rem;
+            }
+
+            .profile-title {
+                font-size: 1.1rem;
+            }
+
+            .profile-bio {
+                font-size: 0.95rem;
+                padding: 1.2rem;
+            }
+
+            .tab-btn {
+                padding: 0.6rem 1.8rem;
+                font-size: 0.95rem;
+            }
+
+            .info-section {
+                padding: 2rem;
+            }
+
+            .info-section h3 {
+                font-size: 1.4rem;
+            }
+
+            .info-item {
+                flex-direction: row;
+            }
+
+            .info-label {
+                min-width: 150px;
+                margin-bottom: 0;
+            }
+
+            .info-value {
+                font-size: 1rem;
+            }
+
+            .family-info-container {
+                flex-direction: row;
+            }
+
+            .family-info-image {
+                margin-bottom: 0;
+                order: 1;
+            }
+
+            .info-Images {
+                width: 180px;
+                height: 180px;
+            }
+
+            .hobbies-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .hobby-card {
+                padding: 1.5rem;
+            }
+
+            .hobby-icon {
+                font-size: 2.5rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+
+            .gallery-img {
+                height: 180px;
+            }
+
+            .social-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
         }
 
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
-            padding: 10px;
-            max-height: 400px;
-            /* Set max height for scrolling */
-            overflow-y: auto;
-            /* Enable vertical scrolling */
-            border: 1px solid #ddd;
-            border-radius: 10px;
-        }
-
-        /* Make sure images fit nicely */
-        .gallery-img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-img:hover {
-            transform: scale(1.05);
+        @media (min-width: 992px) {
+            .cover-photo {
+                height: 350px;
+            }
         }
     </style>
 </head>
@@ -414,92 +606,144 @@
                 <h1 class="profile-name">Nandini Rajeshbhai Koradiya</h1>
                 <p class="profile-title">MBA in USA</p>
 
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-value"></div>
-                        <div class="stat-label">An easygoing and cheerful personality who balances personal and
-                            professional life with grace and family oriented person with a modern outlook on life</div>
-                    </div>
+                <div class="profile-bio">
+                    An easygoing and cheerful personality who balances personal and professional life with grace and
+                    family oriented person with a modern outlook on life.
                 </div>
 
                 <div class="tabs">
-                    <button class="tab-btn active" onclick="showTab('personal')">Personal Info</button>
-                    <button class="tab-btn" onclick="showTab('family')">Family Info</button>
-                    <button class="tab-btn" onclick="showTab('gallery', event)">Photo Gallery</button>
+                    <button class="tab-btn active" onclick="showTab('personal', event)">
+                        <i class="fas fa-user"></i> Personal
+                    </button>
+                    <button class="tab-btn" onclick="showTab('family', event)">
+                        <i class="fas fa-users"></i> Family
+                    </button>
+                    <button class="tab-btn" onclick="showTab('hobbies', event)">
+                        <i class="fas fa-heart"></i> Hobbies
+                    </button>
+                    <button class="tab-btn" onclick="showTab('gallery', event)">
+                        <i class="fas fa-images"></i> Gallery
+                    </button>
                 </div>
 
                 <div id="personal-info" class="info-section active">
                     <h3>Personal Information</h3>
                     <div class="info-item">
                         <span class="info-label">Date of Birth:</span>
-                        <span>July 11, 2003</span>
+                        <span class="info-value">July 11, 2003</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Address:</span>
-                        <span>11,vivekanand society-2 paliyad road Botad-364710</span>
+                        <span class="info-value">11, Vivekanand Society-2 Paliyad Road, Botad-364710</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Email:</span>
-                        <span class="info-label-value">kodiyanandini@gmail.com</span>
+                        <span class="info-value">kodiyanandini@gmail.com</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Phone:</span>
-                        <span>+919265352865</span>
+                        <span class="info-value">+91 9265352865</span>
                     </div>
                 </div>
 
                 <div id="family-info" class="info-section">
                     <h3>Family Information</h3>
                     <div class="family-member">
-                        <h4>Brother</h4>
-                        <div class="family-info-intro">
-                            <div class="family-person-name">
+                        <h4><i class="fas fa-male"></i> Brother</h4>
+                        <div class="family-info-container">
+                            <div class="family-info-details">
                                 <div class="info-item">
                                     <span class="info-label">Name:</span>
-                                    <span>Het Rajeshbhai Koradiya</span>
+                                    <span class="info-value">Het Rajeshbhai Koradiya</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">Age:</span>
-                                    <span>10 year</span>
+                                    <span class="info-value">17 years</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">Study:</span>
-                                    <span>11th Commerce</span>
+                                    <span class="info-value">11th Commerce</span>
                                 </div>
                             </div>
-                            <div>
-                                <div class="family-member-image">
-                                    <img src="./IMG_7231.jpg" alt="Profile Picture" class="info-Images"
-                                        onclick="openImageModal('./IMG_7231.jpg')">
-                                </div>
+                            <div class="family-info-image">
+                                <img src="./IMG_7231.jpg" alt="Brother's Photo" class="info-Images"
+                                    onclick="openImageModal('./IMG_7231.jpg')">
                             </div>
                         </div>
                     </div>
 
                     <div class="family-member">
-                        <h4>Parents</h4>
-                        <div class="family-info-intro">
-                            <div class="family-person-name">
+                        <h4><i class="fas fa-user-friends"></i> Parents</h4>
+                        <div class="family-info-container">
+                            <div class="family-info-details">
                                 <div class="info-item">
                                     <span class="info-label">Father:</span>
-                                    <span>Rajeshbhai Koradiya</span>
+                                    <span class="info-value">Rajeshbhai Koradiya</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">Mother:</span>
-                                    <span>Sonalben Koradiya</span>
+                                    <span class="info-value">Sonalben Koradiya</span>
                                 </div>
                             </div>
-                            <div>
-                                <div class="family-member-image">
-                                    <img src="./IMG_9199.JPG" alt="Profile Picture" class="info-Images"
-                                        onclick="openImageModal('./IMG_9199.JPG')">
-                                </div>
+                            <div class="family-info-image">
+                                <img src="./IMG_9199.jpg" alt="Parents' Photo" class="info-Images"
+                                    onclick="openImageModal('./IMG_9199.jpg')">
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div id="hobbies-info" class="info-section">
+                    <h3>My Hobbies & Interests</h3>
+                    <div class="hobbies-container">
+                        <div class="hobby-card">
+                            <div class="hobby-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h4 class="hobby-name">Reading</h4>
+                            <p class="hobby-description">
+                                Enjoy reading novels, especially fiction and self-improvement books that expand my
+                                perspective.
+                            </p>
+                        </div>
+
+                        <div class="hobby-card">
+                            <div class="hobby-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h4 class="hobby-name">Cooking</h4>
+                            <p class="hobby-description">
+                                Love experimenting with new recipes and cooking traditional Gujarati dishes for my
+                                family.
+                            </p>
+                        </div>
+
+                        <div class="hobby-card">
+                            <div class="hobby-icon">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <h4 class="hobby-name">Music</h4>
+                            <p class="hobby-description">
+                                Passionate about listening to Indian classical music and Bollywood songs that soothe the
+                                mind.
+                            </p>
+                        </div>
+
+                        <div class="hobby-card">
+                            <div class="hobby-icon">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                            <h4 class="hobby-name">Travel</h4>
+                            <p class="hobby-description">
+                                Exploring new places and experiencing different cultures is my way of learning about the
+                                world.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="gallery-info" class="info-section">
-                    <h2>Photo Gallery</h2>
+                    <h3>Photo Gallery</h3>
                     <div class="gallery-container">
                         <img src="IMG_2002.jpg" alt="Gallery Image 1" class="gallery-img"
                             onclick="openImageModal('IMG_2002.jpg')">
@@ -509,31 +753,31 @@
                             onclick="openImageModal('IMG_7349.jpg')">
                     </div>
                 </div>
+
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/nandini-kodiya/" class="social-btn">
-                        <i class="fab fa-linkedin-in">https://www.linkedin.com/in/nandini-kodiya/</i>
+                    <a href="https://www.linkedin.com/in/nandini-kodiya/" class="social-btn" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
                     </a>
                     <a href="#" class="social-btn">
                         <i class="fab fa-github"></i>
                     </a>
+                    <a href="#" class="social-btn">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
-
             </div>
         </div>
     </div>
+
     <div id="imageModal" class="ig-modal">
         <button class="ig-modal-close" onclick="closeImageModal()" aria-label="Close modal">×</button>
         <div class="ig-modal-content">
-            <img id="modalImage" class="ig-modal-img" alt="Profile image modal view">
+            <img id="modalImage" class="ig-modal-img" alt="Enlarged view">
         </div>
-        <!-- <div class="pagination">
-            <button onclick="changePage(-1)">⏪ Prev</button>
-            <span id="pageNumber">1</span>
-            <button onclick="changePage(1)">Next ⏩</button>
-        </div> -->
     </div>
+
     <script>
-        function showTab(tabName) {
+        function showTab(tabName, event) {
             // Hide all sections
             document.querySelectorAll('.info-section').forEach(section => {
                 section.classList.remove('active');
@@ -548,34 +792,21 @@
             document.getElementById(`${tabName}-info`).classList.add('active');
 
             // Add active class to clicked tab
-            event.target.classList.add('active');
+            event.currentTarget.classList.add('active');
         }
-
-
-        // Add smooth hover effects to stats
-        document.querySelectorAll('.stat-item').forEach(item => {
-            item.addEventListener('mouseover', () => {
-                item.style.transform = 'translateY(-5px)';
-                item.style.transition = 'transform 0.3s ease';
-            });
-
-            item.addEventListener('mouseout', () => {
-                item.style.transform = 'translateY(0)';
-            });
-        });
 
         function openImageModal(imgSrc) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             modalImg.src = imgSrc;
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeImageModal() {
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
         }
 
         // Close modal when clicking outside the image
@@ -591,46 +822,11 @@
                 closeImageModal();
             }
         });
-        const images = [
-            "gallery1.jpg", "gallery2.jpg", "gallery3.jpg", "gallery4.jpg",
-            "gallery5.jpg", "gallery6.jpg", "gallery7.jpg", "gallery8.jpg",
-            "gallery9.jpg", "gallery10.jpg", "gallery11.jpg", "gallery12.jpg",
-            "gallery13.jpg", "gallery14.jpg", "gallery15.jpg", "gallery16.jpg",
-            "gallery17.jpg", "gallery18.jpg", "gallery19.jpg", "gallery20.jpg"
-        ];
 
-        let currentPage = 1;
-        const imagesPerPage = 9; // Show 9 images per page
-
-        function displayGallery() {
-            const galleryDiv = document.getElementById('gallery');
-            galleryDiv.innerHTML = ""; // Clear previous images
-            let start = (currentPage - 1) * imagesPerPage;
-            let end = start + imagesPerPage;
-
-            images.slice(start, end).forEach(imgSrc => {
-                const img = document.createElement("img");
-                img.src = imgSrc;
-                img.classList.add("gallery-img");
-                img.onclick = () => openImageModal(imgSrc);
-                galleryDiv.appendChild(img);
-            });
-
-            document.getElementById('pageNumber').innerText = currentPage;
-        }
-
-        function changePage(direction) {
-            let totalPages = Math.ceil(images.length / imagesPerPage);
-            currentPage += direction;
-
-            if (currentPage < 1) currentPage = 1;
-            if (currentPage > totalPages) currentPage = totalPages;
-
-            displayGallery();
-        }
-
-        // Load first page on startup
-        displayGallery();
+        // Initialize the first tab as active
+        document.addEventListener('DOMContentLoaded', function () {
+            showTab('personal', { currentTarget: document.querySelector('.tab-btn') });
+        });
     </script>
 </body>
 
