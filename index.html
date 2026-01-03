@@ -440,45 +440,7 @@
             left: -30px;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .family-container,
-            .maternal-container {
-                grid-template-columns: 1fr;
-            }
-
-            .hobbies-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .gallery-img {
-                width: 120px;
-                height: 120px;
-            }
-
-            .profile-photo {
-                width: 150px;
-                height: 150px;
-            }
-
-            .gallery-scroll {
-                animation: scrollGalleryMobile 30s linear infinite;
-            }
-
-            @keyframes scrollGalleryMobile {
-                0% {
-                    transform: translateX(0);
-                }
-
-                100% {
-                    transform: translateX(calc(-100% + 100vw));
-                }
-            }
-        }
+        /* Responsive adjustments removed to match web view */
 
         /* Hide scrollbar but allow scrolling */
         .gallery-container::-webkit-scrollbar {
@@ -549,24 +511,7 @@
             font-size: 1.05rem;
         }
 
-        @media (max-width: 600px) {
-            .bio-row {
-                flex-direction: column;
-                gap: 5px;
-                margin-bottom: 10px;
-                border-bottom: 1px solid #eee;
-                padding-bottom: 10px;
-            }
 
-            .bio-colon {
-                display: none;
-            }
-
-            .bio-label {
-                width: 100%;
-                color: var(--primary-color);
-            }
-        }
 
         /* Notice Board Styles */
         .notice-board {
@@ -1201,11 +1146,6 @@
                     <div class="bio-colon">:</div>
                     <div class="bio-value">kodiyanandini@gmail.com</div>
                 </div>
-                <div class="bio-row">
-                    <div class="bio-label">Phone</div>
-                    <div class="bio-colon">:</div>
-                    <div class="bio-value">+91 9265352865<br>+1(972)-565-0334</div>
-                </div>
 
             </div>
         </div>
@@ -1220,9 +1160,23 @@
                     <div class="bio-value">Rajeshkumar Kalubhai Kodiya</div>
                 </div>
                 <div class="bio-row">
+                    <div class="bio-label">Phone</div>
+                    <div class="bio-colon">:</div>
+                    <div class="bio-value">+91 9924219009</div>
+                </div>
+                <div class="bio-row">
                     <div class="bio-label">Father's Occupation</div>
                     <div class="bio-colon">:</div>
-                    <div class="bio-value">Sky Spintex Pvt. Ltd. (Director)</div>
+                    <div class="bio-value">Sky Spintex Pvt. Ltd. (Director) <a href="https://www.skyspintex.com"
+                            target="_blank"
+                            style="text-decoration: none; color: #0056b3;">www.skyspintex.com</a><br>Aarya Group of
+                        Companies <a href="https://www.aaryapolyplast.com" target="_blank"
+                            style="text-decoration: none; color: #0056b3;">www.aaryapolyplast.com</a><br>
+                        <span style="font-size: 0.8em; color: #555;">
+                            Aarya Polyplast / Aarya Caps & Closures / Aarya Beverages / Aarya Global<br>
+                            Ghanshyam PVC Industries / KK Pre Fab / Shivani Poly Plast
+                        </span>
+                    </div>
                 </div>
                 <div class="bio-row">
                     <div class="bio-label">Mother's Name</div>
@@ -1274,12 +1228,12 @@
                 <div class="bio-row">
                     <div class="bio-label">Mama's Name</div>
                     <div class="bio-colon">:</div>
-                    <div class="bio-value">Mehulbhai Shankarbhai Bhavliya</div>
+                    <div class="bio-value">Mehulbhai Shankarbhai Bavaliya</div>
                 </div>
                 <div class="bio-row">
                     <div class="bio-label">Mami's Name</div>
                     <div class="bio-colon">:</div>
-                    <div class="bio-value">Payalben Mehulbhai Bhavliya</div>
+                    <div class="bio-value">Payalben Mehulbhai Bavaliya</div>
                 </div>
                 <div class="bio-row">
                     <div class="bio-label">Address</div>
